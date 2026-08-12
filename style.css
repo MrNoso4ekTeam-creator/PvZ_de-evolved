@@ -1,0 +1,271 @@
+@font-face {
+  font-family: "HouseOfTerror";
+  src: url("assets/fonts/HOUSE_OF_TERROR.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Фон */
+.background {
+  position: fixed;
+  inset: 0;
+  background: url("assets/images/background.png") center center / cover no-repeat;
+  z-index: 0;
+}
+
+/* Основной контейнер */
+.container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4vh 16px 6vh;
+}
+
+/* Название мода */
+.title-img {
+  max-width: min(90vw, 700px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6));
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Блок кнопок — снизу */
+.buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+
+/* Общие стили кнопок */
+.btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(220px, 28vw);
+  aspect-ratio: 3 / 1;
+  background-color: transparent;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Текстуры обычного состояния */
+.btn-download,
+.btn-info {
+  background-image: url("assets/images/button1.png");
+}
+
+.btn-contacts {
+  background-image: url("assets/images/button1.png");
+}
+
+/* Текстуры при наведении */
+.btn-download:hover,
+.btn-info:hover {
+  background-image: url("assets/images/button1_highlight.png");
+}
+
+.btn-contacts:hover {
+  background-image: url("assets/images/button1_highlight.png");
+}
+
+/* Текст на кнопках */
+.btn-text {
+  font-family: "HouseOfTerror", "Segoe UI", Arial, sans-serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+  color: #fff;
+  text-shadow:
+    2px 2px 0 #000,
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000;
+  pointer-events: none;
+  user-select: none;
+  text-align: center;
+  line-height: 1.1;
+  padding: 0 8px;
+}
+
+/* ========== Модалки (тёмный акрил) ========== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  position: relative;
+  background: rgba(20, 20, 25, 0.55);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 28px 32px 24px;
+  max-width: min(440px, 90vw);
+  width: 100%;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Кнопка закрытия */
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.modal-close:hover {
+  color: #fff;
+}
+
+.modal-title {
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 18px;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Контакты — просто текст-ссылки */
+.contact-line {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+.contact-line a {
+  color: #7ec8ff;
+  text-decoration: underline;
+}
+
+.contact-line a:hover {
+  color: #a8dbff;
+}
+
+.contact-line a:visited {
+  color: #b39ddb;
+}
+
+/* Текст инфо */
+.info-text {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.info-text p {
+  margin-bottom: 12px;
+}
+
+.info-text p:last-child {
+  margin-bottom: 0;
+}
+
+.info-text strong {
+  color: #fff;
+}
+
+/* Адаптив */
+@media (max-width: 700px) {
+  .buttons {
+    gap: 12px;
+  }
+
+  .btn {
+    width: min(160px, 30vw);
+  }
+
+  .btn-text {
+    font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  }
+}
+
+@media (max-width: 500px) {
+  .container {
+    padding: 3vh 12px 4vh;
+  }
+
+  .buttons {
+    gap: 10px;
+  }
+
+  .btn {
+    width: min(130px, 28vw);
+  }
+
+  .btn-text {
+    font-size: clamp(0.8rem, 3vw, 1rem);
+  }
+
+  .modal {
+    padding: 22px 20px 18px;
+  }
+
+  .modal-title {
+    font-size: 1.25rem;
+  }
+
+  .contact-line {
+    font-size: 0.9rem;
+  }
+}

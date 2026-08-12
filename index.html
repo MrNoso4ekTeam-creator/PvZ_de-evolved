@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plants vs. Zombies: De-evolved</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="background"></div>
+
+  <div class="container">
+    <img src="assets/images/text.png" alt="Plants vs. Zombies: De-evolved" class="title-img">
+
+    <div class="buttons">
+      <button class="btn btn-download" id="btn-download" aria-label="Скачать">
+        <span class="btn-text">Скачать</span>
+      </button>
+
+      <button class="btn btn-contacts" id="btn-contacts" aria-label="Контакты">
+        <span class="btn-text">Контакты</span>
+      </button>
+
+      <button class="btn btn-info" id="btn-info" aria-label="Инфо">
+        <span class="btn-text">Инфо</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Модалка Контакты -->
+  <div class="modal-overlay" id="modal-contacts">
+    <div class="modal">
+      <button class="modal-close" aria-label="Закрыть">&times;</button>
+      <h2 class="modal-title">Контакты</h2>
+      <div class="modal-content">
+        <p class="contact-line">
+          Telegram: <a href="https://t.me/noso4ek2" target="_blank" rel="noopener noreferrer">https://t.me/noso4ek2</a>
+        </p>
+        <p class="contact-line">
+          YouTube: <a href="https://www.youtube.com/@MrNoso4ekAoDteam" target="_blank" rel="noopener noreferrer">www.youtube.com/@MrNoso4ekAoDteam</a>
+        </p>
+        <p class="contact-line">
+          Modrinth: <a href="https://modrinth.com/user/MrNoso4ekAoDteam" target="_blank" rel="noopener noreferrer">https://modrinth.com/user/MrNoso4ekAoDteam</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модалка Инфо -->
+  <div class="modal-overlay" id="modal-info">
+    <div class="modal">
+      <button class="modal-close" aria-label="Закрыть">&times;</button>
+      <h2 class="modal-title">Информация</h2>
+      <div class="modal-content info-text">
+        <p><strong>Plants vs. Zondries: De-evolved</strong> — шуточная модификация Plants vs. Zombies, изменяющая ассеты, баланс и игровые механики.</p>
+        <p>Мод переосмысливает оригинальную игру в сторону абсурда, хардкора и намеренной деградации. Здесь знакомые растения, зомби, музыка и игровые элементы могут выглядеть и вести себя совсем иначе.</p>
+        <p>Чтобы понять De-evolved, в него нужно сыграть.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
