@@ -80,22 +80,15 @@ html, body {
   outline: none;
 }
 
-/* Текстуры обычного состояния */
+/* Текстуры */
 .btn-download,
-.btn-info {
-  background-image: url("assets/images/button1.png");
-}
-
+.btn-info,
 .btn-contacts {
   background-image: url("assets/images/button1.png");
 }
 
-/* Текстуры при наведении */
 .btn-download:hover,
-.btn-info:hover {
-  background-image: url("assets/images/button1_highlight.png");
-}
-
+.btn-info:hover,
 .btn-contacts:hover {
   background-image: url("assets/images/button1_highlight.png");
 }
@@ -117,7 +110,7 @@ html, body {
   padding: 0 8px;
 }
 
-/* ========== Модалки (тёмный акрил) ========== */
+/* Модалки — тёмный акрил */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -153,7 +146,6 @@ html, body {
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-/* Кнопка закрытия */
 .modal-close {
   position: absolute;
   top: 12px;
@@ -186,7 +178,6 @@ html, body {
   gap: 12px;
 }
 
-/* Контакты — просто текст-ссылки */
 .contact-line {
   color: rgba(255, 255, 255, 0.9);
   font-size: 0.98rem;
@@ -206,7 +197,6 @@ html, body {
   color: #b39ddb;
 }
 
-/* Текст инфо */
 .info-text {
   color: rgba(255, 255, 255, 0.92);
   font-size: 0.98rem;
@@ -225,7 +215,6 @@ html, body {
   color: #fff;
 }
 
-/* Адаптив */
 @media (max-width: 700px) {
   .buttons {
     gap: 12px;
