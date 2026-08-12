@@ -37,17 +37,18 @@ document.addEventListener("DOMContentLoaded", () => {
   btnContacts.addEventListener("click", () => openModal(modalContacts));
   btnInfo.addEventListener("click", () => openModal(modalInfo));
 
-  // Скачать: открываем контакты + сразу скачиваем файл
+  // Скачать: открываем контакты + скачиваем с Google Диска
   btnDownload.addEventListener("click", () => {
     openModal(modalContacts);
 
-    const fileName = "Plants vs. Zombies De-Evolved.zip";
-    const href = "assets/images/git2/2/pvz/downloads/" + encodeURIComponent(fileName);
+    const downloadUrl =
+      "https://drive.google.com/uc?export=download&confirm=t&id=1XGaoM2jQ_d_f2z44C6dlMvucpLkVk6MT";
 
     const a = document.createElement("a");
-    a.href = href;
-    a.download = fileName;
+    a.href = downloadUrl;
+    a.download = "Plants vs. Zombies De-Evolved.zip";
     a.rel = "noopener";
+    a.target = "_blank";
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
