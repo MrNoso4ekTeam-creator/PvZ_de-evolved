@@ -16,64 +16,40 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.overflow = "";
   }
 
-  // Закрытие по крестику
   document.querySelectorAll(".modal-close").forEach((btn) => {
     btn.addEventListener("click", () => {
-      const modal = btn.closest(".modal-overlay");
-      closeModal(modal);
+      closeModal(btn.closest(".modal-overlay"));
     });
   });
 
-  // Закрытие по клику на оверлей
   document.querySelectorAll(".modal-overlay").forEach((overlay) => {
     overlay.addEventListener("click", (e) => {
-      if (e.target === overlay) {
-        closeModal(overlay);
-      }
+      if (e.target === overlay) closeModal(overlay);
     });
   });
 
-  // Закрытие по Escape
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       document.querySelectorAll(".modal-overlay.active").forEach(closeModal);
     }
   });
 
-  // Кнопка Контакты
-  btnContacts.addEventListener("click", () => {
-    openModal(modalContacts);
-  });
+  btnContacts.addEventListener("click", () => openModal(modalContacts));
+  btnInfo.addEventListener("click", () => openModal(modalInfo));
 
-  // Кнопка Инфо
-  btnInfo.addEventListener("click", () => {
-    openModal(modalInfo);
-  });
-
-  // Кнопка Скачать — открывает контакты + скачивает архив
+  // Скачать: открываем контакты + сразу скачиваем файл
   btnDownload.addEventListener("click", () => {
     openModal(modalContacts);
 
     const fileName = "Plants vs. Zombies De-Evolved.zip";
-    const folder = "assets/images/git2/2/pvz/downloads/";
-    const downloadPath = encodeURI(folder + fileName);
+    const href = "assets/images/git2/2/pvz/downloads/" + encodeURIComponent(fileName);
 
-    fetch(downloadPath, { method: "HEAD" })
-      .then((res) => {
-        if (res.ok) {
-          const a = document.createElement("a");
-          a.href = downloadPath;
-          a.download = fileName;
-          a.style.display = "none";
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-        } else {
-          console.warn("Файл не найден:", downloadPath);
-        }
-      })
-      .catch(() => {
-        console.warn("Не удалось проверить файл:", downloadPath);
-      });
+    const a = document.createElement("a");
+    a.href = href;
+    a.download = fileName;
+    a.rel = "noopener";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   });
 });
