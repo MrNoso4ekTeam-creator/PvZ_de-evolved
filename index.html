@@ -1,64 +1,210 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plants vs. Zombies: De-evolved</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plants vs. Zombies: De-Evolved</title>
+<style>
+@font-face {
+  font-family: 'House of Terror';
+  src: url('assets/fonts/HOUSE_OF_TERROR.ttf') format('truetype');
+  font-display: swap;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: url('assets/images/background.png') center center / cover no-repeat;
+  font-family: 'House of Terror', sans-serif;
+  position: relative;
+}
+
+.logo {
+  position: absolute;
+  top: 6vh;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: min(70vw, 640px);
+  height: auto;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,0.5));
+  animation: logoIn 0.9s ease-out;
+}
+
+@keyframes logoIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(-16px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.nav {
+  position: absolute;
+  bottom: 5vh;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: clamp(16px, 4vw, 40px);
+}
+
+.nav-btn {
+  background-color: transparent;
+  background-image: url('assets/images/button.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  width: clamp(140px, 18vw, 220px);
+  height: clamp(52px, 6vw, 70px);
+  color: #fff;
+  font-family: inherit;
+  font-size: clamp(16px, 2vw, 22px);
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+}
+
+.nav-btn:hover,
+.nav-btn:focus-visible {
+  background-image: url('assets/images/button_high.png');
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, background 0.3s ease;
+  z-index: 10;
+}
+
+.overlay.open {
+  opacity: 1;
+  background: rgba(0,0,0,0.55);
+  pointer-events: auto;
+}
+
+.phone {
+  position: relative;
+  width: 465px;
+  height: 633px;
+  max-width: 88vw;
+  max-height: 88vh;
+  background: url('assets/images/groundphone.png') center center / contain no-repeat;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12%;
+  text-align: center;
+  transform: translateY(-120%);
+  transition: transform 0.35s ease;
+}
+
+.overlay.open .phone {
+  transform: translateY(0);
+}
+
+.phone-text {
+  color: #fff;
+  font-size: clamp(14px, 2vw, 18px);
+  line-height: 1.7;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+}
+
+.phone-text a {
+  color: #a8ffb0;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.phone-text a:hover {
+  text-decoration: underline;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo, .phone, .overlay { transition: none; animation: none; }
+}
+
+@media (max-height: 600px) {
+  html, body { overflow: auto; }
+}
+</style>
 </head>
 <body>
-  <div class="background"></div>
 
-  <div class="container">
-    <img src="assets/images/text.png" alt="Plants vs. Zombies: De-evolved" class="title-img">
+<img src="assets/images/text.png" alt="Plants vs. Zombies: De-Evolved" class="logo">
 
-    <div class="buttons">
-      <button class="btn btn-download" id="btn-download" aria-label="Скачать">
-        <span class="btn-text">Скачать</span>
-      </button>
+<nav class="nav">
+  <button class="nav-btn" id="btn-download">Скачать</button>
+  <button class="nav-btn" id="btn-contacts">Контакты</button>
+  <button class="nav-btn" id="btn-about">О моде</button>
+</nav>
 
-      <button class="btn btn-contacts" id="btn-contacts" aria-label="Контакты">
-        <span class="btn-text">Контакты</span>
-      </button>
-
-      <button class="btn btn-info" id="btn-info" aria-label="Инфо">
-        <span class="btn-text">Инфо</span>
-      </button>
+<div class="overlay" id="overlay-contacts">
+  <div class="phone">
+    <div class="phone-text">
+      youtube : <a href="https://www.youtube.com/@MrNoso4ekAoDteam" target="_blank" rel="noopener">youtube.com/@MrNoso4ekAoDteam</a><br><br>
+      modrinth : <a href="https://modrinth.com/user/MrNoso4ekAoDteam" target="_blank" rel="noopener">modrinth.com/user/MrNoso4ekAoDteam</a><br><br>
+      telegram : <a href="https://t.me/noso4ek2" target="_blank" rel="noopener">t.me/noso4ek2</a>
     </div>
   </div>
+</div>
 
-  <!-- Модалка Контакты -->
-  <div class="modal-overlay" id="modal-contacts">
-    <div class="modal">
-      <button class="modal-close" aria-label="Закрыть">&times;</button>
-      <h2 class="modal-title">Контакты</h2>
-      <div class="modal-content">
-        <p class="contact-line">
-          Telegram: <a href="https://t.me/noso4ek2" target="_blank" rel="noopener noreferrer">https://t.me/noso4ek2</a>
-        </p>
-        <p class="contact-line">
-          YouTube: <a href="https://www.youtube.com/@MrNoso4ekAoDteam" target="_blank" rel="noopener noreferrer">www.youtube.com/@MrNoso4ekAoDteam</a>
-        </p>
-        <p class="contact-line">
-          Modrinth: <a href="https://modrinth.com/user/MrNoso4ekAoDteam" target="_blank" rel="noopener noreferrer">https://modrinth.com/user/MrNoso4ekAoDteam</a>
-        </p>
-      </div>
+<div class="overlay" id="overlay-about">
+  <div class="phone">
+    <div class="phone-text">
+      Plants vs. Zombies: De-Evolved — это шуточная и очень интересная модификация. В ней есть новые вариации зомби и их механики, новые растения и многое другое. Поиграйте в неё, чтобы прочувствовать!
     </div>
   </div>
+</div>
 
-  <!-- Модалка Инфо -->
-  <div class="modal-overlay" id="modal-info">
-    <div class="modal">
-      <button class="modal-close" aria-label="Закрыть">&times;</button>
-      <h2 class="modal-title">Информация</h2>
-      <div class="modal-content info-text">
-        <p><strong>Plants vs. Zondries: De-evolved</strong> — шуточная модификация Plants vs. Zombies, изменяющая ассеты, баланс и игровые механики.</p>
-        <p>Мод переосмысливает оригинальную игру в сторону абсурда, хардкора и намеренной деградации. Здесь знакомые растения, зомби, музыка и игровые элементы могут выглядеть и вести себя совсем иначе.</p>
-        <p>Чтобы понять De-evolved, в него нужно сыграть.</p>
-      </div>
-    </div>
-  </div>
+<script>
+const DRIVE_URL = 'https://drive.google.com/file/d/1qIUiXwuYxXDKuXNHM7rkAmGVBz33L6TU/view?usp=sharing';
 
-  <script src="script.js"></script>
+const overlayContacts = document.getElementById('overlay-contacts');
+const overlayAbout = document.getElementById('overlay-about');
+
+function openOverlay(el) {
+  el.classList.add('open');
+}
+function closeOverlay(el) {
+  el.classList.remove('open');
+}
+
+document.getElementById('btn-download').addEventListener('click', () => {
+  window.open(DRIVE_URL, '_blank', 'noopener');
+  openOverlay(overlayContacts);
+});
+
+document.getElementById('btn-contacts').addEventListener('click', () => {
+  openOverlay(overlayContacts);
+});
+
+document.getElementById('btn-about').addEventListener('click', () => {
+  openOverlay(overlayAbout);
+});
+
+[overlayContacts, overlayAbout].forEach(overlay => {
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeOverlay(overlay);
+  });
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeOverlay(overlayContacts);
+    closeOverlay(overlayAbout);
+  }
+});
+</script>
+
 </body>
 </html>
